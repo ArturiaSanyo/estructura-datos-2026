@@ -3,7 +3,7 @@
 
 def contar(lista):
     """Devuelve cuántos elementos tiene la lista. No uses len()."""
-    return lisa.length() 
+    return lista.length() 
     pass
 
 
