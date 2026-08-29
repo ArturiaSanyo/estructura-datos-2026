@@ -31,26 +31,34 @@ class ListaArreglo:
     def __init__(self):
         self._capacidad = self.CAPACIDAD_INICIAL
         self._datos = [None] * self._capacidad
-        self._tamaño = 0
+        self._datos[0] = 9
+        self._datos[1] = 98
+        self._tamano = 0
 
     # ---------- operaciones públicas ----------
 
-    def tamaño(self):
-        pass
+    def tamano(self):
+        contador = 0
+        while self._datos[contador]:
+            contador = contador + 1
+        self._tamano = contador
+        return contador
 
     def obtener(self, posicion):
         """Devuelve el elemento en `posicion`. O(1)."""
         self._validar(posicion, incluir_final=False)
-        pass
+        return self.datos[posicion]
+        
 
     def insertar(self, posicion, elemento):
         """Inserta desplazando los elementos siguientes hacia la derecha."""
         self._validar(posicion, incluir_final=True)
-        if self._tamaño == self._capacidad:
+        if self._tamano == self._capacidad:
             self._redimensionar(self._capacidad * 2)
         # Desplaza desde el FINAL hacia atrás. ¿Por qué desde el final?
         # Si lo haces desde el principio, sobrescribes los datos.
-        pass
+        self._datos[posicion] = elemento
+        
 
     def eliminar(self, posicion):
         """Elimina y devuelve el elemento, desplazando los siguientes."""
@@ -64,7 +72,7 @@ class ListaArreglo:
     # ---------- auxiliares ----------
 
     def _validar(self, posicion, incluir_final):
-        limite = self._tamaño if incluir_final else self._tamaño - 1
+        limite = self._tamano if incluir_final else self._tamano - 1
         if not 0 <= posicion <= limite:
             raise PosicionInvalidaError(
                 f"posicion {posicion} fuera de rango [0, {limite}]"
@@ -88,3 +96,10 @@ class ListaArreglo:
 
     def __repr__(self):
         return f"ListaArreglo({list(self)!r})"
+
+
+
+
+l1 = ListaArreglo()
+print("El tamaño del arreglo es ", l1.tamano())
+l1.insertar(2, 66)
