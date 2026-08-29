@@ -1,6 +1,0 @@
-# Artefactos de Python
-__pycache__/
-*.py[cod]
-
-# Artefactos de pytest
-.pytest_cache/
