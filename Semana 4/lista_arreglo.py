@@ -63,7 +63,7 @@ class ListaArreglo:
     def eliminar(self, posicion):
         """Elimina y devuelve el elemento, desplazando los siguientes."""
         self._validar(posicion, incluir_final=False)
-        pass
+        elemento_eliminado = self._elementos[posicion] 
 
     def buscar(self, elemento):
         """Devuelve la posición de la primera aparición, o -1."""
