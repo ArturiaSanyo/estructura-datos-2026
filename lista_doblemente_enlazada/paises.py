@@ -1,97 +1,92 @@
-# 1. Definimos la clase Nodo. 
-# Piensa en un Nodo como una "cajita" que guarda un país y dos flechas (una al anterior, una al siguiente).
+# 1. Clase Nodo (la cajita con el país y las flechas)
 class NodoPais:
     def __init__(self, nombre_pais):
-        self.pais = nombre_pais  # Aquí guardamos el nombre del país (ej: "España")
-        self.siguiente = None    # Apunta al país que viene después (inicialmente vacío)
-        self.anterior = None     # Apunta al país que viene antes (inicialmente vacío)
+        self.pais = nombre_pais
+        self.siguiente = None
+        self.anterior = None
 
-# 2. Definimos la clase ListaDoblementeEnlazada.
-# Esta clase maneja los nodos y nos permite movernos entre ellos.
+# 2. Clase Lista Doblemente Enlazada
 class ListaDoblementeEnlazada:
     def __init__(self):
-        self.cabeza = None  # El primer país de la lista
-        self.cola = None    # El último país de la lista
-        self.actual = None  # El país en el que estamos "parados" ahora mismo
+        self.cabeza = None
+        self.cola = None
+        self.actual = None  # Aquí guardamos el país donde estamos parados
 
-    # Método para agregar un país al final de la lista
     def agregar_pais(self, nombre_pais):
-        nuevo_nodo = NodoPais(nombre_pais) # Creamos la cajita con el nuevo país
-        
-        if self.cabeza is None: # Si la lista está vacía...
+        nuevo_nodo = NodoPais(nombre_pais)
+        if self.cabeza is None:
             self.cabeza = nuevo_nodo
             self.cola = nuevo_nodo
-            self.actual = nuevo_nodo # Nos paramos en el primer país
-        else: # Si ya hay países en la lista...
-            self.cola.siguiente = nuevo_nodo # El último país ahora apunta al nuevo
-            nuevo_nodo.anterior = self.cola # El nuevo país apunta hacia atrás al último
-            self.cola = nuevo_nodo          # El nuevo país ahora es el último (la cola)
+            self.actual = nuevo_nodo # Nos paramos en el primer país agregado
+        else:
+            self.cola.siguiente = nuevo_nodo
+            nuevo_nodo.anterior = self.cola
+            self.cola = nuevo_nodo
 
-    # Método para ir al siguiente país
     def ir_siguiente(self):
         if self.actual is None:
             print("La lista está vacía.")
             return
-        
         if self.actual.siguiente is not None:
-            self.actual = self.actual.siguiente # Nos movemos a la siguiente cajita
-            print(f"✈️ Viajando al este... Ahora estás en: {self.actual.pais}")
+            self.actual = self.actual.siguiente
+            print(f"\n✈️ Viajando al este... Ahora estás en: {self.actual.pais}")
         else:
-            print("🚫 Ya estás en el último país de la lista. No puedes ir más al este.")
+            print("\n🚫 Ya estás en el último país de la lista. No puedes ir más al este.")
 
-    # Método para ir al país anterior
     def ir_anterior(self):
         if self.actual is None:
             print("La lista está vacía.")
             return
-        
         if self.actual.anterior is not None:
-            self.actual = self.actual.anterior # Nos movemos a la cajita anterior
-            print(f"✈️ Viajando al oeste... Ahora estás en: {self.actual.pais}")
+            self.actual = self.actual.anterior
+            print(f"\n✈️ Viajando al oeste... Ahora estás en: {self.actual.pais}")
         else:
-            print("🚫 Ya estás en el primer país de la lista. No puedes ir más al oeste.")
+            print("\n🚫 Ya estás en el primer país de la lista. No puedes ir más al oeste.")
 
-    # Método para mostrar dónde estamos parados
     def mostrar_actual(self):
         if self.actual is not None:
-            print(f"📍 Ubicación actual: {self.actual.pais}")
+            print(f"\n📍 Ubicación actual: {self.actual.pais}")
         else:
-            print("📍 No estás en ningún país.")
+            print("\n📍 No estás en ningún país.")
 
 # ==========================================
-# 3. PRUEBA DEL PROGRAMA (Aquí empieza la ejecución real)
+# 3. PROGRAMA PRINCIPAL (Interacción contigo)
 # ==========================================
 
-# Creamos nuestra lista vacía
-mi_viaje = ListaDoblementeEnlazada()
+def main():
+    # Primero, creamos la lista y le metemos los 4 países
+    mi_viaje = ListaDoblementeEnlazada()
+    mi_viaje.agregar_pais("Portugal")
+    mi_viaje.agregar_pais("España")
+    mi_viaje.agregar_pais("Francia")
+    mi_viaje.agregar_pais("Italia")
 
-# Agregamos 4 países europeos (en orden geográfico de oeste a este para que tenga sentido)
-print("--- Creando la ruta de viaje ---")
-mi_viaje.agregar_pais("Portugal")
-mi_viaje.agregar_pais("España")
-mi_viaje.agregar_pais("Francia")
-mi_viaje.agregar_pais("Italia")
-print("Ruta creada con éxito.\n")
+    print("🌍 ¡Bienvenido a tu viaje por Europa!")
+    print("Estás en Portugal. Usa las opciones para moverte.")
 
-# Empezamos el viaje
-mi_viaje.mostrar_actual() # Debería estar en Portugal
+    # Este bucle hará que el menú se repita hasta que elijas salir
+    while True:
+        print("\n--- MENÚ DE VIAJE ---")
+        print("1. Ir al siguiente país (Este ➡️)")
+        print("2. Regresar al país anterior (Oeste ⬅️)")
+        print("3. Ver dónde estoy")
+        print("4. Salir del programa")
+        
+        # input() pausa el programa y espera a que escribas algo y presiones Enter
+        opcion = input("Elige una opción (1-4): ")
 
-# Probamos ir hacia adelante (Siguiente)
-print("\n--- Moviéndonos hacia el Este (Siguiente) ---")
-mi_viaje.ir_siguiente() # España
-mi_viaje.ir_siguiente() # Francia
-mi_viaje.mostrar_actual()
+        if opcion == "1":
+            mi_viaje.ir_siguiente()
+        elif opcion == "2":
+            mi_viaje.ir_anterior()
+        elif opcion == "3":
+            mi_viaje.mostrar_actual()
+        elif opcion == "4":
+            print("\n👋 ¡Buen viaje! Saliendo del programa...")
+            break # Esta palabra clave rompe el bucle while y termina el programa
+        else:
+            print("\n❌ Opción no válida. Por favor, escribe un número del 1 al 4.")
 
-# Probamos ir hacia atrás (Anterior)
-print("\n--- Moviéndonos hacia el Oeste (Anterior) ---")
-mi_viaje.ir_anterior() # España
-mi_viaje.ir_anterior() # Portugal
-mi_viaje.mostrar_actual()
-
-# Probamos los límites de la lista
-print("\n--- Probando los límites ---")
-mi_viaje.ir_anterior() # Intenta ir antes de Portugal (debe dar error controlado)
-mi_viaje.ir_siguiente() # España
-mi_viaje.ir_siguiente() # Francia
-mi_viaje.ir_siguiente() # Italia
-mi_viaje.ir_siguiente() # Intenta ir después de Italia (debe dar error controlado)
+# Esta línea asegura que el programa principal se ejecute al iniciar
+if __name__ == "__main__":
+    main() 
