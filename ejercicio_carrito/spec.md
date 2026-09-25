@@ -33,28 +33,38 @@ Las tildes no se eliminan. `"café"` y `"cafe"` son productos diferentes.
 ### Cantidad
 La cantidad debe ser un número entero mayor que cero.
 
-Por tanto, `0`, números negativos, decimales, textos y valores booleanos no son válidos.
+Por tanto, `0`, números negativos, decimales y textos no son válidos.
+
+### Cómo se manejan los datos inválidos (decisión de nivel básico)
+Esta versión **no usa manejo de errores** (no se lanzan excepciones).
+
+Si algo no es válido —el producto está vacío, la cantidad no es un entero mayor que cero, se quiere sacar un producto que no existe, o se quiere sacar más de lo que hay— la operación:
+
+1. muestra un mensaje en pantalla explicando qué pasó, y
+2. no hace ningún cambio en el carrito.
 
 ### Agregar
 `meter(producto, cantidad)` suma la cantidad indicada.
 
-Si el producto no existe, se crea.
+Si el producto no existe, se crea. Si ya existe, se acumula.
 
-Si ya existe, se acumula.
+Si el producto o la cantidad no son válidos, se muestra un mensaje y no se agrega nada.
 
 ### Retirar
 `sacar(producto, cantidad)` resta la cantidad indicada.
 
-Si el producto no existe, se produce `ValueError`.
+Si el producto no existe, se muestra un mensaje y no se cambia nada.
 
-Si se intenta retirar más de lo disponible, se produce `ValueError` y el carrito no cambia.
+Si se intenta retirar más de lo disponible, se muestra un mensaje y el carrito no cambia.
 
-Si la cantidad llega a cero, el producto se elimina.
+Si la cantidad llega a cero, el producto se elimina del carrito.
 
 ### Consultar
 `cuanto_hay(producto)` devuelve la cantidad.
 
 Si el producto no existe, devuelve `0`.
+
+Si el nombre no es válido, muestra un mensaje y devuelve `0`.
 
 ### Total
 `cuanto_llevo()` devuelve el número total de unidades del carrito. No representa dinero.
@@ -75,7 +85,7 @@ Agrega `cantidad` unidades de `producto`.
 - Producto: texto no vacío.
 - Cantidad: `int >= 1`.
 - Devuelve: `None`.
-- Error: `ValueError` si los datos no son válidos.
+- Si los datos no son válidos: muestra un mensaje y no hace nada.
 
 ### `sacar(producto, cantidad)`
 Retira `cantidad` unidades.
@@ -84,7 +94,7 @@ Retira `cantidad` unidades.
 - Cantidad: `int >= 1`.
 - Debe haber suficientes unidades.
 - Devuelve: `None`.
-- Error: `ValueError` si los datos no son válidos o no hay suficientes unidades.
+- Si los datos no son válidos, el producto no existe, o no hay suficientes unidades: muestra un mensaje y no hace nada.
 
 ### `cuanto_hay(producto)`
 Consulta la cantidad de un producto.
@@ -92,7 +102,7 @@ Consulta la cantidad de un producto.
 - Producto: texto no vacío.
 - Devuelve: `int`.
 - Si no existe: `0`.
-- Error: `ValueError` si el nombre no es válido.
+- Si el nombre no es válido: muestra un mensaje y devuelve `0`.
 
 ### `cuanto_llevo()`
 Devuelve la suma de todas las unidades.
@@ -123,17 +133,6 @@ Se entregan dos implementaciones del mismo TAD:
 
 Ambas deben comportarse exactamente igual desde el punto de vista del usuario.
 
-La diferencia está en la estructura utilizada internamente:
-
-| Operación | Lista | Diccionario |
-|---|---|---|
-| `meter` | O(n) | O(1) promedio |
-| `sacar` | O(n) | O(1) promedio |
-| `cuanto_hay` | O(n) | O(1) promedio |
-| `cuanto_llevo` | O(n) | O(n) |
-
-`n` representa la cantidad de productos diferentes.
-
 ---
 
 ## 6. Ejemplo
@@ -153,6 +152,9 @@ print(carrito.cuanto_llevo())     # 6
 carrito.sacar("pan", 2)
 
 print(carrito.cuanto_hay("pan"))  # 3
+
+carrito.sacar("pan", 100)         # muestra mensaje, no cambia nada
+print(carrito.cuanto_hay("pan"))  # sigue siendo 3
 ```
 
 Este ejemplo funciona igual con `carrito_lista.Carrito`.
