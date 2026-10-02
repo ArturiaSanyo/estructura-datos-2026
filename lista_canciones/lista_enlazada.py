@@ -118,3 +118,5 @@ class ListaEnlazada:
 
     def __repr__(self):
         return f"ListaEnlazada({list(self)!r})"
+
+
