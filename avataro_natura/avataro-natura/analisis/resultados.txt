@@ -1,0 +1,29 @@
+RESULTADOS DE LA MEDICIÓN DE TIEMPOS
+
+1) Responder 200 veces al último comentario (milisegundos, menos es mejor)
+ Comentarios   Sin índice   Con índice   Veces más rápido
+        1000        13.83         0.40                 35
+        2000        18.01         0.33                 54
+        4000        35.79         0.30                118
+        8000        76.27         0.31                248
+       16000       164.58         0.33                500
+
+2) Mostrar el hilo completo (milisegundos)
+ Comentarios       Tiempo
+        1000         0.28
+        2000         0.48
+        4000         1.07
+        8000         2.09
+       16000         4.26
+
+3) Reportes: tiempo por operación (microsegundos)
+    Reportes     reportar      atender
+        1000        0.377        0.101
+        2000        0.359        0.099
+        4000        0.360        0.103
+        8000        0.375        0.102
+       16000        0.400        0.110
+
+Cómo leerlo: si al duplicar los comentarios el tiempo también se
+duplica, el costo crece en proporción (O(n)). Si el tiempo casi no
+cambia, el costo es casi constante (O(1)).
