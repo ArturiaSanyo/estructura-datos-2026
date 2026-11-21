@@ -1,0 +1,23 @@
+== Partes A y C: 10000 documentos, semilla 2026 ==
+BST ordenado     altura =  10000 | pasos por búsqueda =  5000.5 | µs por búsqueda =  123.83 | carga = 1.67 s
+BST desordenado  altura =     31 | pasos por búsqueda =    16.0 | µs por búsqueda =    0.53 | carga = 0.01 s
+AVL ordenado     altura =     14 | pasos por búsqueda =    12.4 | µs por búsqueda =    0.36 | carga = 0.04 s
+                 rotaciones simples = 9986 | reequilibrios = 9986 | por caso = {'LL': 0, 'RR': 9986, 'LR': 0, 'RL': 0}
+AVL desordenado  altura =     16 | pasos por búsqueda =    12.6 | µs por búsqueda =     0.5 | carga = 0.04 s
+                 rotaciones simples = 7102 | reequilibrios = 4695 | por caso = {'LL': 1112, 'RR': 1176, 'LR': 1183, 'RL': 1224}
+
+== Parte B: los primeros siete documentos ordenados ==
+[1102900, 1240010, 1412081, 1459496, 1535665, 1591445, 1745621]
+BST: altura 7 (una cadena: cada nodo tiene un solo hijo)
+AVL: altura 3 | rotaciones simples: 4 | por caso: {'LL': 0, 'RR': 4, 'LR': 0, 'RL': 0}
+AVL: raíz 1459496
+     hijos de la raíz: 1240010 y 1591445
+     hojas: 1102900 1412081 1535665 1745621
+
+== Parte D: carga inicial DESORDENADA y luego 2.000 matrículas extemporáneas ==
+BST | al azar                            | altura 31 -> 33 | pasos (tardías) = 18.2 | µs (tardías) = 0.61
+AVL | al azar                            | altura 16 -> 16 | pasos (tardías) = 14.0 | µs (tardías) = 0.54
+BST | bloque creciente sobre el máximo   | altura 31 -> 2009 | pasos (tardías) = 1009.5 | µs (tardías) = 27.82
+AVL | bloque creciente sobre el máximo   | altura 16 -> 16 | pasos (tardías) = 14.8 | µs (tardías) = 0.43
+BST | bloque creciente dentro del rango  | altura 31 -> 2018 | pasos (tardías) = 1018.5 | µs (tardías) = 24.19
+AVL | bloque creciente dentro del rango  | altura 16 -> 16 | pasos (tardías) = 13.4 | µs (tardías) = 0.34
