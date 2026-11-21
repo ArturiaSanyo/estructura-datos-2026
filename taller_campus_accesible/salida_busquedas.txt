@@ -1,0 +1,18 @@
+NODOS EXPLORADOS POR CADA BÚSQUEDA PARA LA MISMA CONSULTA
+(Entre paréntesis: costo de la ruta encontrada; el menor es el óptimo)
+====================================================================================================
+Consulta                                                        BFS            DFS             A*
+----------------------------------------------------------------------------------------------------
+Portería Principal -> Biblioteca (12:00)                   21 (446)      41 (2258)       12 (435)
+Portería Principal -> Bloque A Ingeniería (17:45)          27 (542)      34 (1735)       18 (532)
+Portería Norte -> Cafetería Central (12:00)                37 (644)      47 (2246)       18 (644)
+Portería Deportiva -> Admisiones y Registro (12:00)       49 (1058)      54 (2264)      38 (1058)
+Mirador -> Portería Principal (12:00)                      41 (658)      59 (1730)       17 (658)
+----------------------------------------------------------------------------------------------------
+Promedio de las 3540 consultas posibles (12:00)                31.0           31.0           16.6
+
+¿Qué tan buena es la ruta que encuentra cada uno? (las 3540 consultas)
+----------------------------------------------------------------------------------------------------
+BFS  encuentra la ruta de menor costo en el 61.8 % de las consultas; en promedio su ruta cuesta 1.03 veces la óptima.
+DFS  encuentra la ruta de menor costo en el 11.8 % de las consultas; en promedio su ruta cuesta 3.62 veces la óptima.
+A*   encuentra la ruta de menor costo en el 100.0 % de las consultas; en promedio su ruta cuesta 1.0 veces la óptima.

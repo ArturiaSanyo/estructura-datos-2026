@@ -1,0 +1,33 @@
+MEMORIA DE LAS TRES REPRESENTACIONES
+======================================================================
+Campus: 60 puntos y 90 tramos.
+Pares posibles de puntos: 1.770. Tramos reales: 90 (5.1 % de los posibles).
+Cada tramo se guarda 2 veces (ida y vuelta): 180 entradas.
+Suposición: cada casilla ocupa 8 bytes.
+La información de cada tramo (distancia, pendiente...) es igual en las tres
+y se guarda una sola vez, así que no se cuenta aquí.
+
+Representación          Casillas     Bytes  % de la matriz
+----------------------------------------------------------------------
+Matriz                     3.600    28.800  100.0 %
+Lista de adyacencia          420     3.360  11.7 %
+Matriz dispersa (CSR)        421     3.368  11.7 %
+
+De las 3.600 casillas de la matriz, solo 180 tienen un tramo (5.0 %). El resto son ceros guardados para nada.
+
+CASILLAS QUE SE LEEN PARA PEDIR LOS VECINOS DE UN PUNTO (promedio)
+----------------------------------------------------------------------
+Matriz                  60.0
+Lista de adyacencia      3.0
+Matriz dispersa (CSR)    5.0
+
+SI EL CAMPUS CRECE (con la misma forma: 1,5 tramos por punto)
+----------------------------------------------------------------------
+  Puntos   Matriz (casillas)       Lista         CSR   Matriz en bytes
+      60               3.600         420         421            28.800
+     600             360.000       4.200       4.201         2.880.000
+   6.000          36.000.000      42.000      42.001       288.000.000
+  60.000       3.600.000.000     420.000     420.001    28.800.000.000
+
+La matriz crece con el CUADRADO de los puntos (n x n); la lista y la dispersa
+crecen en línea recta con los puntos y los tramos.

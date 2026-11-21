@@ -1,0 +1,15 @@
+VERIFICACIÓN DE LA HEURÍSTICA (distancia en línea recta)
+======================================================================
+1) En cada uno de los 90 tramos se cumple:
+      línea recta <= distancia del tramo <= costo del tramo
+   Tramos que NO lo cumplen: 0
+
+2) Se comparó la estimación con el costo real de 3540 pares (origen, destino):
+   Pares donde la heurística SOBREESTIMA el costo real: 0
+   Razón estimación/costo real: promedio 0.59, máxima 0.99 (Laboratorio de Química -> Gimnasio).
+   (Una razón <= 1 en todos los pares significa que nunca sobreestima.)
+
+3) Consistencia: h(A) <= costo(A,B) + h(B) en 10800 combinaciones
+   (tramo, sentido, destino). Violaciones: 0
+
+RESULTADO: la heurística es admisible (y consistente) con los datos del campus.

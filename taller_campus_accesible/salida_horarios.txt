@@ -1,0 +1,83 @@
+######################################################################
+PARTE D - CONSULTA PEDIDA (antes de que cierre la puerta)
+######################################################################
+CONSULTA: Portería Principal -> Biblioteca a las 17:45
+----------------------------------------------------------------------
+Ruta accesible encontrada: 6 tramos, 435 m, costo de esfuerzo 435.0.
+
+  1. Portería Principal -> Parqueadero Sur   76 m, pendiente 1.3 %, costo 76.0
+  2. Parqueadero Sur -> Admisiones y Registro   69 m, pendiente 2.9 %, costo 69.0
+  3. Admisiones y Registro -> Bienestar Universitario   60 m, pendiente 3.3 %, costo 60.0
+  4. Bienestar Universitario -> Cruce Bienestar   77 m, pendiente 1.3 %, costo 77.0
+  5. Cruce Bienestar -> Plazoleta Central   77 m, pendiente 1.3 %, costo 77.0
+  6. Plazoleta Central -> Biblioteca   76 m, pendiente 1.3 %, costo 76.0
+    (puerta: cierra a las 18:00)
+
+Puntos revisados por A*: 12
+
+######################################################################
+PARTE D - CONSULTA PEDIDA (después de que cierra la puerta: no hay ruta accesible)
+######################################################################
+CONSULTA: Portería Principal -> Biblioteca a las 18:15
+----------------------------------------------------------------------
+NO EXISTE RUTA ACCESIBLE a las 18:15.
+Sí existe una ruta accesible cuando las puertas están abiertas, pero a esta hora
+tiene tramos con puerta ya cerrada:
+  - Plazoleta Central -> Biblioteca (la puerta cerró a las 18:00)
+No hay otro camino accesible: los demás pasan por escaleras sin rampa, obras o pendientes excesivas.
+Puntos revisados por A* antes de concluirlo: 59
+
+######################################################################
+OTRO EJEMPLO - con rodeo (antes del cierre)
+######################################################################
+CONSULTA: Portería Principal -> Bloque A Ingeniería a las 17:45
+----------------------------------------------------------------------
+Ruta accesible encontrada: 7 tramos, 496 m, costo de esfuerzo 531.5.
+
+  1. Portería Principal -> Parqueadero Sur   76 m, pendiente 1.3 %, costo 76.0
+  2. Parqueadero Sur -> Admisiones y Registro   69 m, pendiente 2.9 %, costo 69.0
+  3. Admisiones y Registro -> Bienestar Universitario   60 m, pendiente 3.3 %, costo 60.0
+  4. Bienestar Universitario -> Cruce Bienestar   77 m, pendiente 1.3 %, costo 77.0
+  5. Cruce Bienestar -> Sala de Profesores   65 m, pendiente 3.1 %, costo 65.0
+  6. Sala de Profesores -> Cruce Plaza Norte   78 m, pendiente 3.2 %, costo 78.0
+  7. Cruce Plaza Norte -> Bloque A Ingeniería   71 m, pendiente 7.0 %, costo 106.5
+    (puerta: cierra a las 18:00)
+
+Puntos revisados por A*: 18
+
+######################################################################
+OTRO EJEMPLO - con rodeo (después del cierre: ruta más larga)
+######################################################################
+CONSULTA: Portería Principal -> Bloque A Ingeniería a las 18:15
+----------------------------------------------------------------------
+Ruta accesible encontrada: 11 tramos, 780 m, costo de esfuerzo 860.0.
+
+  1. Portería Principal -> Parqueadero Sur   76 m, pendiente 1.3 %, costo 76.0
+  2. Parqueadero Sur -> Admisiones y Registro   69 m, pendiente 2.9 %, costo 69.0
+  3. Admisiones y Registro -> Bienestar Universitario   60 m, pendiente 3.3 %, costo 60.0
+  4. Bienestar Universitario -> Cruce Bienestar   77 m, pendiente 1.3 %, costo 77.0
+  5. Cruce Bienestar -> Sala de Profesores   65 m, pendiente 3.1 %, costo 65.0
+  6. Sala de Profesores -> Jardín Botánico   57 m, pendiente 3.5 %, costo 57.0
+  7. Jardín Botánico -> Cruce Jardín   80 m, pendiente 1.2 %, costo 80.0
+  8. Cruce Jardín -> Rectoría   74 m, pendiente 5.4 %, costo 111.0
+    (puerta: cierra a las 22:00)
+  9. Rectoría -> Sala de Consejo   76 m, pendiente 2.6 %, costo 76.0
+ 10. Sala de Consejo -> Ascensor Bloque A   60 m, pendiente 3.3 %, costo 60.0
+ 11. Ascensor Bloque A -> Bloque A Ingeniería   86 m, pendiente 5.2 %, costo 129.0
+
+Puntos revisados por A*: 37
+
+######################################################################
+CASO DE ERROR - nombre mal escrito
+######################################################################
+CONSULTA: Portería Principal -> Biblioteka a las 17:45
+----------------------------------------------------------------------
+ERROR EN LA CONSULTA: No existe el punto 'Biblioteka' en el campus. Revisa que el nombre esté bien escrito (con tildes).
+
+######################################################################
+CASO DE ERROR - hora inválida
+######################################################################
+CONSULTA: Portería Principal -> Biblioteca a las 25:99
+----------------------------------------------------------------------
+ERROR EN LA CONSULTA: La hora '25:99' no existe. Usa el formato HH:MM, por ejemplo 17:45.
+
